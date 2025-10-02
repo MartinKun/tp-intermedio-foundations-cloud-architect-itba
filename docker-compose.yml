@@ -19,6 +19,10 @@ services:
       - ./sql:/sql
     networks:
       - tp_network  # <-- asignamos la red
+<<<<<<< HEAD
+=======
+
+>>>>>>> e1387aa9bec7c74c2425f1c595a4512d40b553ed
 
 volumes:
   postgres_data:
