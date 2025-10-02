@@ -2,14 +2,23 @@ import psycopg2
 import csv
 from datetime import datetime
 import os
+import requests
 
-# Carpeta donde está el CSV
-DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
-csv_path = os.path.join(DATA_DIR, "oficina_rescate.csv")
+# --- CONFIG ---
+DOWNLOAD_URL = "https://datos.jus.gob.ar/dataset/3b7de3f0-b62f-411e-9151-1a861fd3b170/resource/a78fc9f9-2608-4a65-bf98-eef5976caeba/download/oficina-rescate-orientaciones-referidos-202001-202508.csv"
+csv_path = "/tmp/oficina_rescate.csv"
 
-print(f"Usando CSV local: {csv_path}")
+# Descargar CSV
+print("Descargando CSV desde Internet...")
+resp = requests.get(DOWNLOAD_URL)
+if resp.status_code != 200:
+    raise Exception(f"No se pudo descargar el CSV. Código HTTP: {resp.status_code}")
+with open(csv_path, "wb") as f:
+    f.write(resp.content)
 
-# Conexión DB
+print(f"Usando CSV: {csv_path}")
+
+# --- Conexión DB ---
 print("Conectando a la base de datos en host:", os.environ.get("PGHOST"))
 conn = psycopg2.connect(
     dbname=os.environ["PGDATABASE"],
@@ -21,15 +30,15 @@ conn = psycopg2.connect(
 cur = conn.cursor()
 print("Conexión establecida.")
 
+# --- Insertar datos ---
 insertados = 0
 saltados = 0
 
 with open(csv_path, "r", encoding="utf-8-sig") as f:
-    reader = csv.DictReader(f, delimiter=",")  # CSV separado por comas
+    reader = csv.DictReader(f, delimiter=",")
     print("Columnas detectadas en CSV:", reader.fieldnames)
 
     for idx, row in enumerate(reader):
-        # Normalizar keys
         row = {k.strip(): v.strip() for k, v in row.items()}
 
         # Validar ID
@@ -40,9 +49,9 @@ with open(csv_path, "r", encoding="utf-8-sig") as f:
             continue
         nro_id = int(nro_id)
 
-        # Fecha/hora
+        # Fechas
         fecha_ingreso = row.get("fecha_ingreso_consulta") or None
-        hora_ingreso = None  # No tienes columna hora, dejar None
+        hora_ingreso = None
 
         def parse_datetime(val):
             if not val:
@@ -62,7 +71,7 @@ with open(csv_path, "r", encoding="utf-8-sig") as f:
         derivacion2_judicializa = row.get("derivacion2_judicializa", "").lower() in ["sí", "si", "yes", "true"]
         derivacion3_judicializa = row.get("derivacion3_judicializa", "").lower() in ["sí", "si", "yes", "true"]
 
-        # Edad denunciantes
+        # Edad
         edad = row.get("edad_aparente")
         edad = int(edad) if edad and edad.isdigit() else None
 
