@@ -20,6 +20,7 @@ services:
     networks:
       - tp_network  # <-- asignamos la red
 
+
 volumes:
   postgres_data:
 

@@ -17,9 +17,9 @@ Con estos datos en una base de datos relacional, se podrían responder preguntas
    ¿Qué provincias concentran la mayor cantidad de denuncias y cómo varía según el tema de la denuncia?  
 
 
-3. **Denuncias por conocimiento de la línea**  
-   ¿Cómo se enteraron los denunciantes de la Línea 145 y cuáles son los canales más efectivos según la cantidad de denuncias?  
+3. **Distribución por tipo de denunciante**  
+   ¿Qué tipo de denunciante es más frecuente (por ejemplo, persona, organización, etc.)?
+  
 
-
-4. **Denuncias repetidas y derivaciones múltiples**  
-   ¿Cuántos casos fueron derivados más de una vez y a qué instituciones?
+4. **Promedio de edad de los denunciantes por tema**  
+   ¿Cuál es la edad promedio de los denunciantes según el tema de la denuncia?
