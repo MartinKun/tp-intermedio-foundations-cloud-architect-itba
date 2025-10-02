@@ -1,5 +1,8 @@
 version: "3.8"
 
+networks:
+  tp_network:  # <-- definimos la red
+
 services:
   postgres_db:
     image: postgres:12.7
@@ -14,6 +17,11 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./sql:/sql
+    networks:
+      - tp_network  # <-- asignamos la red
+
 
 volumes:
   postgres_data:
+
+# networks definidas arriba se usan aquí
