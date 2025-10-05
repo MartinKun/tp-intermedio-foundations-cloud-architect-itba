@@ -91,5 +91,7 @@ Este archivo será utilizado por los contenedores Docker para conectarse a Postg
 
 ### Ejecución end-to-end
 
+Antes de ejecutar el flujo end-to-end, asegurarse de que Docker esté abierto y corriendo.
+
 ```bash
 ./run_end2end.sh
