@@ -49,16 +49,23 @@ Se creó el script [`report_db.py`](./scripts/report_db.py) que ejecuta consulta
 Las consultas implementadas son:
 
 1. **Evolución temporal de denuncias**  
-   ¿Cómo ha evolucionado la cantidad de denuncias por año entre 2020 y 2025?
+   ¿Cómo ha evolucionado la cantidad de denuncias a lo largo del tiempo, desglosadas por año y por mes?
 
-2. **Distribución por provincia y tema**  
-   ¿Qué provincias concentran la mayor cantidad de denuncias y cómo varía según el tema de la denuncia?
 
-3. **Distribución por tipo de denunciante**  
-   ¿Qué tipo de denunciante es más frecuente (persona, organización, etc.)?
+2. **Subtema con mayor cantidad de denuncias a nivel nacional**  
+   ¿Cuál es el subtema que registra la mayor cantidad de denuncias en toda la Argentina?  
 
-4. **Promedio de edad de denunciantes por tema**  
-   ¿Cuál es la edad promedio de los denunciantes según el tema de la denuncia?
+
+3. **Subtema con más denuncias por provincia**  
+   Para cada provincia, ¿cuál es el subtema que registra la mayor cantidad de denuncias y cuántas denuncias corresponden a ese subtema en esa provincia?
+  
+
+4. **Distribución de género de los denunciantes por provincia**  
+   ¿Cuál es la distribución de género de los denunciantes por provincia, indicando la cantidad y el porcentaje de cada género dentro de cada provincia?
+
+
+5. **Top 3 subtemas con más derivaciones judicializadas por año**  
+   ¿Cuáles son los tres subtemas con mayor cantidad de derivaciones judicializadas por año?
 
 ---
 
